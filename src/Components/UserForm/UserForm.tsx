@@ -1,20 +1,13 @@
 import React, {useState} from 'react';
-
-interface User {
-  name: string;
-  email: string;
-  role: string;
-  status: boolean;
-  id: string
-}
+import {UserInterface} from '../../types';
 
 interface Props {
-  onSubmit: (user: User) => void;
+  onSubmit: (user: UserInterface) => void;
 }
 
 const UserForm: React.FC<Props> = ({onSubmit}) => {
 
-  const [user, setUser] = useState<User> ({
+  const [user, setUser] = useState<UserInterface> ({
     name: '',
     email: '',
     role: '',
@@ -41,6 +34,14 @@ const UserForm: React.FC<Props> = ({onSubmit}) => {
 
     onSubmit({
       ...user,
+    });
+
+    setUser({
+      name: '',
+      email: '',
+      role: '',
+      status: false,
+      id:  Math.random().toString(),
     });
   };
 
