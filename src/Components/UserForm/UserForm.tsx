@@ -30,7 +30,6 @@ const UserForm: React.FC<Props> = ({onSubmit}) => {
 
   const onFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(user);
 
     onSubmit({
       ...user,
