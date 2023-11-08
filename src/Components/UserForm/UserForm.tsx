@@ -5,7 +5,7 @@ interface User {
   email: string;
   role: string;
   status: boolean;
-  id?: string;
+  id: string
 }
 
 interface Props {
@@ -18,7 +18,8 @@ const UserForm: React.FC<Props> = ({onSubmit}) => {
     name: '',
     email: '',
     role: '',
-    status: false
+    status: false,
+    id:  Math.random().toString(),
   });
 
   const addUser = (e: React.ChangeEvent<HTMLInputElement> |  React.ChangeEvent<HTMLSelectElement> ): void => {
@@ -38,9 +39,7 @@ const UserForm: React.FC<Props> = ({onSubmit}) => {
     e.preventDefault();
     console.log(user);
 
-
     onSubmit({
-      id: Math.random().toString(),
       ...user,
     });
   };

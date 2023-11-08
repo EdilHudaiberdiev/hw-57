@@ -2,18 +2,26 @@ import './App.css';
 import React, {useState} from 'react';
 import UserForm from './Components/UserForm/UserForm';
 
-interface Props {
-
+interface User {
+  name: string;
+  email: string;
+  role: string;
+  status: boolean;
+  id: string;
 }
 
-function App() {
+const App = () => {
 
-  const [users, setUsers] = useState<Props[]> ([
-    {name: 'Mike', email: 'mikebrown@gmail.com', activity: false, role: 'client'},
-    {name: 'John', email: 'johnjohn32@gmail.com', activity: false, role: 'client'},
-    {name: 'Mary', email: 'maryli@gmail.com', activity: true, role: 'editor'},
-    {name: 'Philip', email: 'philip1992@gmail.com', activity: false, role: 'admin'},
+  const [users, setUsers] = useState<User[]> ([
+    {id: Math.random().toString(), name: 'Mike', email: 'mikebrown@gmail.com', status: false, role: 'client'},
+    {id: Math.random().toString(), name: 'John', email: 'johnjohn32@gmail.com', status: false, role: 'client'},
+    {id: Math.random().toString(),name: 'Mary', email: 'maryli@gmail.com', status: true, role: 'editor'},
+    {id: Math.random().toString(), name: 'Philip', email: 'philip1992@gmail.com', status: false, role: 'admin'},
   ]);
+
+  const onSubmitForm = (user: User) => {
+    setUsers(prevState => [...prevState, user]);
+  };
 
   return (
     <>
@@ -22,12 +30,10 @@ function App() {
       </header>
 
       <main> Content
-        <UserForm onSubmit={user => console.log(user)}/>
-        {/*<Users>*/}
-        {/*</Users>*/}
+        <UserForm onSubmit={user => onSubmitForm(user)}/>
       </main>
     </>
   );
-}
+};
 
 export default App;
